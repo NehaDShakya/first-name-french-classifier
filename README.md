@@ -108,7 +108,7 @@ To run the Flask application locally, use the following instructions based on yo
 #### On Windows (using `waitress`)
 
 1. Install `waitress`:
-   
+
    ```bash
    pip install waitress
    ```
@@ -124,10 +124,13 @@ This will serve your application on `http://localhost:5000`.
 #### On Unix-based Systems (using `gunicorn`)
 
 1. Install `gunicorn`:
+
    ```bash
    pip install gunicorn
    ```
+
 2. Run the application:
+
    ```bash
    gunicorn app:app
    ```
