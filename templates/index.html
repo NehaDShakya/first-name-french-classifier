@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Name Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">French Name Prediction</h1>
+        <p class="text-center">Enter a first name to predict if it is likely French.</p>
+        <form method="post">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Predict</button>
+        </form>
+
+        {% if error %}
+        <div class="result">
+            <p class="error">{{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if first_name %}
+        <div class="result">
+            <h3>Prediction Result</h3>
+            <p><strong>Original First Name:</strong> {{ original_first_name }}</p>
+            <p><strong>Cleaned First Name (Title Case):</strong> {{ first_name }}</p>
+            <p><strong>Probability of being French:</strong> {{ is_french_probability }}</p>
+            <p><strong>Prediction:</strong> {{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

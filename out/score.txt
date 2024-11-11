@@ -1,0 +1,5 @@
+Accuracy: 0.8835
+Precision: 0.6724
+Recall: 0.7895
+F1 Score: 0.7262
+ROC AUC: 0.9072
