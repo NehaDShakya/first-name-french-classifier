@@ -20,9 +20,10 @@ The French Name Classifier project was developed for Bleu Blanc Rouge VC with th
     - [Model Fine-Tuning](#model-fine-tuning)
   - [Metrics](#metrics)
   - [Application and Deployment](#application-and-deployment)
-    - [Web Application](#web-application)
-    - [Deployment](#deployment)
-  - [Project Structure](#project-structure)
+    - [Local Deployment](#local-deployment)
+      - [On Windows (using `waitress`)](#on-windows-using-waitress)
+      - [On Unix-based Systems (using `gunicorn`)](#on-unix-based-systems-using-gunicorn)
+    - [Deployed Website](#deployed-website)
 
 ---
 
@@ -52,6 +53,7 @@ Bleu Blanc Rouge VC's mission is to identify and invest in promising French star
 ## Exploratory Data Analysis (EDA)
 
 Detailed EDA can be found in the `eda.ipynb` file. Key insights include:
+
 - Distribution of French vs. non-French names.
 - Data cleaning and preprocessing steps.
 - Feature exploration and selection strategies.
@@ -69,10 +71,10 @@ Detailed EDA can be found in the `eda.ipynb` file. Key insights include:
 ### Model Comparison
 
 Three models were evaluated:
+
 1. **Logistic Regression**
-2. 
-3. **Random Forest** (Ensemble method with multiple decision trees)
-4. **Naive Bayes** (Assumes independence between features)
+2. **Random Forest** (Ensemble method with multiple decision trees)
+3. **Naive Bayes** (Assumes independence between features)
 
 Results:
 
@@ -99,39 +101,38 @@ Metrics used for evaluating models include:
 
 ## Application and Deployment
 
-### Web Application
+### Local Deployment
 
-The model is deployed as a web application using Flask, allowing users to:
-- Input a first name and receive a prediction indicating whether the name is likely French.
-- View probabilities and cleaned input data.
+To run the Flask application locally, use the following instructions based on your operating system:
 
-### Deployment
+#### On Windows (using `waitress`)
 
-The application is deployed using Heroku with the following structure:
+1. Install `waitress`:
+   
+   ```bash
+   pip install waitress
+   ```
+  
+2. Run the application:
 
-- **`app.py`**: Main Flask application script.
-- **`requirements.txt`**: Lists all Python dependencies.
-- **`Procfile`**: Specifies commands for Heroku to run the app.
-- **`runtime.txt`**: Specifies the Python version for Heroku (optional).
-- **`templates/index.html`**: User interface for input and result display.
-- **`model/`**: Contains `model.pkl` (trained model) and `vectorizer.pkl` (TF-IDF vectorizer).
-- **`out/score.txt`**: Contains model metrics.
+   ```bash
+   waitress-serve --port=5000 app:app
+   ```
 
-## Project Structure
+This will serve your application on `http://localhost:5000`.
 
-```
-first_name_french_classifier/
-│
-├── app.py               # Main Flask application
-├── requirements.txt     # List of dependencies
-├── Procfile             # Command to run the app
-├── runtime.txt          # Python version (optional)
-├── model/
-│   ├── model.pkl        # Trained Random Forest model
-│   └── vectorizer.pkl   # TF-IDF vectorizer
-├── templates/
-│   └── index.html       # HTML template for web interface
-└── out/
-    └── score.txt        # Model evaluation metrics
-└── eda.ipynb            # Exploratory Data Analysis notebook
-```
+#### On Unix-based Systems (using `gunicorn`)
+
+1. Install `gunicorn`:
+   ```bash
+   pip install gunicorn
+   ```
+2. Run the application:
+   ```bash
+   gunicorn app:app
+   ```
+
+### Deployed Website
+
+The French Name Classifier web application is deployed and accessible at:
+**[https://french-classifier-by-first-name.onrender.com/](https://french-classifier-by-first-name.onrender.com/)**
